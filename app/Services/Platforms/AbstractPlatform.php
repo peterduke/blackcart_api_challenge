@@ -8,9 +8,6 @@ namespace App\Services\Platforms;
 abstract class AbstractPlatform
 {
     protected $data;
-
-    // abstract public function index();
-    // abstract public function show($productId);
     
     /**
      * load the API data from the  JSON file
@@ -25,8 +22,5 @@ abstract class AbstractPlatform
         return $this->data;
     }
 
-    public function show($productId)
-    {
-
-    }
+    abstract public function show($productId);
 }

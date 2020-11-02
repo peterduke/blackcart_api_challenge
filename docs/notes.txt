@@ -1,0 +1,13 @@
+returning HTML 404s instead of JSON
+
+returning weights in kg for shopify, not clear what it will be for woocommerce
+
+woocommerce 
+    doesn't have prices in different currencies
+    'stock_quantity' can be NULL while 'stock_status' is 'instock'
+        so might not be suitable to answer question 
+        "are we out of stock"
+
+shopify
+    prices, weights, quantities are specific to variants so just taking the last available or the sum
+    didn't have an example of item with different sizes
