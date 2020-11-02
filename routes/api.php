@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\API\StoresController;
+use App\Http\Controllers\API\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::get('stores/{store}/products', [StoresController::class, 'show']);
+Route::get('stores/{store}/products', [StoreController::class, 'index']);
+Route::get('stores/{store}/products/{id}', [StoreController::class, 'show']);
