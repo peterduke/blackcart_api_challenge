@@ -12,7 +12,11 @@ class Woocommerce extends AbstractPlatform
     
     public function index()
     {
-        return $this->data;
+        $result = [];
+        foreach($this->data as $item) {
+            $result[] = $this->transformItem($item);
+        }
+        return $result;
     }
 
     public function show($productId)
@@ -31,11 +35,12 @@ class Woocommerce extends AbstractPlatform
         $t = new \stdClass();
         $t->id = $item->id;
         $t->name = $item->name;
+        $t->prices = [['currency_code' => null, 'amount' => $item->price]]; // currency type not available in WooCommerce API
         $t->inventory_level = $item->stock_quantity;
         $t->in_stock = $item->stock_status == 'instock' ? true : false;
 
-        $t->sizes = null;
-        $t->colors = null;
+        $t->sizes = [];
+        $t->colors = [];
         foreach($item->attributes as $a) {
             if ($a->name == 'Color') {
                 $t->colors = $a->options;

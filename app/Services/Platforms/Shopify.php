@@ -12,7 +12,11 @@ class Shopify extends AbstractPlatform
     
     public function index()
     {
-        return $this->data;
+        $result = [];
+        foreach($this->data->products as $item) {
+            $result[] = $this->transformItem($item);
+        }
+        return $result;
     }
 
     public function show($productId)
@@ -32,12 +36,16 @@ class Shopify extends AbstractPlatform
         $t->id = $item->id;
         $t->name = $item->title;
 
-        // these next values we extract from the 'variants'
+        // inventory, prices and weights we extract from the 'variants'
+        $t->prices = [];
         $t->inventory_level = 0;
         $t->weight = null;
         foreach($item->variants as $v) {
             $t->weight = $v->weight;
             $t->inventory_level += $v->inventory_quantity;
+            foreach($v->presentment_prices as $pp) {
+                $t->prices[] = $pp->price;
+            }
         }
         $t->in_stock = $t->inventory_level > 0  ? true : false;
 

@@ -3,7 +3,7 @@
 namespace App\Services\Platforms;
 
 /**
- * Abstract base class to fix the platform signature
+ * Abstract base class to fix the platform interface.
  */
 abstract class AbstractPlatform
 {
@@ -17,10 +17,7 @@ abstract class AbstractPlatform
         $this->data = json_decode(file_get_contents(base_path(static::PATH_TO_JSON)));
     }
 
-    public function index()
-    {
-        return $this->data;
-    }
+    abstract public function index();
 
     abstract public function show($productId);
 }
