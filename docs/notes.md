@@ -16,6 +16,10 @@ The data is from sample JSON from the Shopify and WooCommerce API documentation 
 
 ---
 
+The work of normalizing the API structures is done by service classes found in `app/Services/Platforms/` which extend an abstract base class. These classes could also do the work of connecting to the external platform APIs if that was a requirement. Adding and removing e-commerce platforms would involve adding and removing these classes and coordinating the class names with the 'platform' field in the 'stores' table.
+
+---
+
 I didn't include pagination functionality for the lists of products, but it would be necessary for a real API.
 
 ---
