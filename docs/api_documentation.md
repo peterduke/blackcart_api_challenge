@@ -8,9 +8,13 @@
 
 Retrieves a list of products from the indicated store.
 
+---
+
 `GET /stores/{storeID}/products/{productID}`
 
 Retrieves the indicated product from the indicated store.
+
+---
 
 ### Product Attributes
 
